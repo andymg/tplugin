@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<com.andy.tplug.tplug.HelloWorldBuilder_-DescriptorImpl plugin="tplug@1.0-SNAPSHOT">
+  <useFrench>true</useFrench>
+</com.andy.tplug.tplug.HelloWorldBuilder_-DescriptorImpl>
