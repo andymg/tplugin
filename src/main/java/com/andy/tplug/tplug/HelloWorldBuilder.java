@@ -36,12 +36,14 @@ public class HelloWorldBuilder extends Builder {
 
     private final String name;
     private final String check;
+    private boolean checkbox;
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
     public HelloWorldBuilder(String name, String check) {
         this.name = name;
         this.check = check;
+        this.checkbox = checkbox;
     }
 
     /**
@@ -52,6 +54,9 @@ public class HelloWorldBuilder extends Builder {
     }
     public String getCheck() {
         return check;
+    }
+    public boolean getCheckbox() {
+        return checkbox;
     }
 
     @Override

@@ -15,5 +15,8 @@
   <f:entry title="Check" field="check">
     <f:textbox />
   </f:entry>
-  
+  <f:entry title="CheckboxTest" field="checkbox"
+    description="Check if you want to test checkbox">
+    <f:checkbox />
+  </f:entry>
 </j:jelly>
