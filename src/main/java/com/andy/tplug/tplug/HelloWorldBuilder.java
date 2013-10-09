@@ -63,13 +63,52 @@ public class HelloWorldBuilder extends Builder {
     public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
         // This is where you 'build' the project.
         // Since this is a dummy, we just say 'hello world' and call that a build.
-
+        // test run shell command
+        
         // This also shows how you can consult the global configuration of the builder
-        if (getDescriptor().getUseFrench())
+        /*if (getDescriptor().getUseFrench())
             listener.getLogger().println("Bonjour, "+name+check+"!");
         else
             listener.getLogger().println("Hello, "+name+check+"!");
-        return true;
+        return true;*/
+	 List<Cause> buildStepCause = new ArrayList(); 
+     buildStepCause.add(new Cause() {  
+        public String getShortDescription() {  
+            return "Build Step started by Hello Builder";  
+        }  
+    });  
+    listener.started(buildStepCause);     //向hudson控制台输出日志  
+   
+    ArgumentListBuilder args = new ArgumentListBuilder();  
+    if (launcher.isUnix()) {  
+        args.add("/bin/ls");  
+        args.add("-la");  
+     } else {  
+         args.add("dir"); //Windows  
+     }  
+     String homeDir = System.getProperty("user.home");  
+     args.add(homeDir);  
+     try {  
+         int r;  
+   //调用外部命令，cmds传入命令和参数；stdout方法将标准输出重定向到listener的流中（输出到hudson的web控制台），join等待完成并返回结果  
+   //可以看到launcher是相当强大的..   
+         r = launcher.launch().cmds(args).stdout(listener).join();  
+  
+          if (r != 0) {  
+             listener.finished(Result.FAILURE);  
+             return false;  
+          }  
+     } catch (IOException ioe) {  
+       ioe.printStackTrace(listener.fatalError("Execution" + args + "failed"));  //打印异常，标记结果  
+       listener.finished(Result.FAILURE);             
+       return false;  
+     } catch (InterruptedException ie) {  
+       ie.printStackTrace(listener.fatalError("Execution" + args + "failed"));  
+       listener.finished(Result.FAILURE);  
+       return false;  
+     }  
+  
+     listener.finished(Result.SUCCESS);  
     }
 
     // Overridden for better type safety.

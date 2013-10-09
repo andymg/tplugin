@@ -3,11 +3,11 @@ Group-Id: com.andy.tplug
 Short-Name: tplug
 Long-Name: tplug
 Url: http://jenkins-ci.org/plugin/tplug/
-Plugin-Version: 1.0-SNAPSHOT (private-09/26/2013 20:23-andy)
+Plugin-Version: 1.0-SNAPSHOT (private-10/09/2013 14:27-andym)
 Hudson-Version: 1.509.3
 Jenkins-Version: 1.509.3
 Plugin-Dependencies: ui-samples-plugin:1.509.3
 Plugin-Developers: 
-Libraries: /home/andy/git/tplug/target/classes
-Resource-Path: /home/andy/git/tplug/src/main/webapp
+Libraries: /home/andym/git/tplugin/target/classes
+Resource-Path: /home/andym/git/tplugin/src/main/webapp
 
